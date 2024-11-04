@@ -9,10 +9,9 @@
 //! ```shell
 //! RUST_LOG=info cargo run --release -- --prove
 //! ```
-
-use alloy_sol_types::SolType;
+use borsh::BorshDeserialize;
 use clap::Parser;
-use fibonacci_lib::PublicValuesStruct;
+use sol_lib::fibonacci_lib::{fibonacci, PublicValuesStruct};
 use sp1_sdk::{ProverClient, SP1Stdin};
 
 /// The ELF (executable and linkable format) file for the Succinct RISC-V zkVM.
@@ -58,14 +57,16 @@ fn main() {
         let (output, report) = client.execute(FIBONACCI_ELF, stdin).run().unwrap();
         println!("Program executed successfully.");
 
+        let mut output_reader: &[u8] = output.as_slice();
         // Read the output.
-        let decoded = PublicValuesStruct::abi_decode(output.as_slice(), true).unwrap();
+        let decoded: PublicValuesStruct = BorshDeserialize::deserialize(&mut output_reader)
+            .expect("Failed to deserialize with Borsh");
         let PublicValuesStruct { n, a, b } = decoded;
         println!("n: {}", n);
         println!("a: {}", a);
         println!("b: {}", b);
 
-        let (expected_a, expected_b) = fibonacci_lib::fibonacci(n);
+        let (expected_a, expected_b) = fibonacci(n);
         assert_eq!(a, expected_a);
         assert_eq!(b, expected_b);
         println!("Values are correct!");

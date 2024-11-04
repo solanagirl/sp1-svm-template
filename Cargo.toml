@@ -7,4 +7,10 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
-alloy-sol-types = "0.7.7"
+curve25519-dalek = { version = "4.1.3", features = ["digest"] }
+zeroize = { version = "1.3", default-features = false }
+solana-program = "<=^2.0.0"
+solana_rbpf="^0.8.5"
+digest = "^0.10.1"
+subtle = "^2.4.*"
+
