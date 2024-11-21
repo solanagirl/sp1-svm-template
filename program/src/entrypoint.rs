@@ -2,10 +2,10 @@
 
 use {
     crate::processor::Processor,
-    solana_program::{account_info::AccountInfo, entrypoint::ProgramResult, pubkey::Pubkey},
+    stateless_asks::{account_info::AccountInfo, entrypoint::ProgramResult, pubkey::Pubkey},
 };
 
-solana_program::entrypoint!(process_instruction);
+stateless_asks::entrypoint!(process_instruction);
 fn process_instruction(
     program_id: &Pubkey,
     accounts: &[AccountInfo],

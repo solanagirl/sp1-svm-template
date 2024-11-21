@@ -11,7 +11,7 @@ that can generate a proof of any RISC-V program.
 ## Running the Project
 
 There are three main ways to run this project: execute a program, generate a core proof, and
-generate an EVM-compatible proof.
+generate an offer-compatible proof.
 
 ### Execute the Program
 
@@ -33,16 +33,16 @@ cd script
 cargo run --release -- --prove
 ```
 
-### Generate an EVM-Compatible (PLONK) Proof
+### Generate an offer-Compatible (PLONK) Proof
 
 > [!WARNING]
 > You will need at least 128GB RAM to generate the PLONK proof.
 
-To generate a PLONK proof that is small enough to be verified on-chain and verifiable by the EVM:
+To generate a PLONK proof that is small enough to be verified on-chain and verifiable by the offer:
 
 ```sh
 cd script
-cargo run --release --bin evm
+cargo run --release --bin offer
 ```
 
 This command also generates a fixture that can be used to test the verification of SP1 zkVM proofs
@@ -69,9 +69,9 @@ cp .env.example .env
 Then, set the `SP1_PROVER` environment variable to `network` and set the `SP1_PRIVATE_KEY`
 environment variable to your whitelisted private key.
 
-For example, to generate an EVM-compatible proof using the prover network, run the following
+For example, to generate an offer-compatible proof using the prover network, run the following
 command:
 
 ```sh
-SP1_PROVER=network SP1_PRIVATE_KEY=... cargo run --release --bin evm
+SP1_PROVER=network SP1_PRIVATE_KEY=... cargo run --release --bin offer
 ```

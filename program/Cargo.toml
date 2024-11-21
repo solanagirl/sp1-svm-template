@@ -17,6 +17,7 @@ solana-pubkey = "2.1.0"
 spl-token = { version = "7.0.0", features = [
   "no-entrypoint",
 ] }
+stateless-asks = "0.1.0"
 blake3 = { version = "^1.5.*", optional = true, features = ["std"] }
 spl-associated-token-account = "6.0.0"
 subtle = { version = "2.4.1", default-features = false }
@@ -24,6 +25,7 @@ thiserror = "1.0"
 sol_lib = { path = "../lib" }
 sp1-zkvm = "3.1.0"
 getrandom = { version = "<=0.2.15", features = ["dummy"] }
+mpl-token-metadata = "5.1.0"
 
 [dev-dependencies]
 solana-sdk = "^2.1.0"

@@ -1,11 +1,11 @@
 [package]
 version = "0.1.0"
-name = "fibonacci-script"
+name = "anon-offers-script"
 edition = "2021"
-default-run = "fibonacci"
+default-run = "anon-offers"
 
 [[bin]]
-name = "fibonacci"
+name = "anon-offers"
 path = "src/bin/main.rs"
 
 [[bin]]

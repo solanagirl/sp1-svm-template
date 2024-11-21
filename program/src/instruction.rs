@@ -1,14 +1,8 @@
 //! Instruction types
 
-use {
-    borsh::{BorshDeserialize, BorshSchema, BorshSerialize},
-    solana_program::{
-        instruction::{AccountMeta, Instruction},
-        pubkey::Pubkey,
-        system_program,
-    },
-};
-
+use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
+use solana_program::{instruction::AccountMeta, instruction::Instruction, system_program};
+use solana_pubkey::Pubkey;
 /// Instructions supported by the StatelessOffer program.
 #[repr(C)]
 #[derive(Clone, Debug, PartialEq, BorshSerialize, BorshDeserialize, BorshSchema)]

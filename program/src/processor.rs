@@ -8,17 +8,13 @@ use {
     },
     borsh::{BorshDeserialize, BorshSerialize},
     solana_program::{
-        account_info::{next_account_info, AccountInfo},
-        borsh1::try_from_slice_unchecked,
-        entrypoint::ProgramResult,
-        msg,
-        program::{invoke, invoke_signed},
-        program_error::ProgramError,
-        program_option::COption,
-        program_pack::Pack,
-        system_instruction, system_program,
+        account_info::next_account_info, borsh1::try_from_slice_unchecked, entrypoint,
+        entrypoint_deprecated::ProgramResult, instruction::AccountMeta, msg, program::invoke,
+        program::invoke_signed, program_option::COption, program_pack::Pack, system_instruction,
+        system_program, sysvar::slot_history::AccountInfo, sysvar::slot_history::ProgramError,
     },
     solana_pubkey::Pubkey,
+    spl_token::state::Account,
     std::slice::Iter,
 };
 
@@ -179,8 +175,7 @@ fn process_accept_offer(
         (maker_size, taker_size)
     };
 
-    let maker_src_token_account: spl_token::state::Account =
-        spl_token::state::Account::unpack(&maker_src_account.data.borrow())?;
+    let maker_src_token_account: Account = Account::unpack(&maker_src_account.data.borrow())?;
     // Ensure that the delegated amount is exactly equal to the maker_size
     msg!(
         "Delegate {}",
